@@ -5,21 +5,25 @@ import glob
 
 drake_directory = 'C:/Users/Albert/Documents/FBNorcalHack/drake'
 
+"""Import lyrics from database."""
 def import_tracks(drt=drake_directory):
     os.chdir(drt)
     track_list = glob.glob('*')
     return track_list
 
+"""Helper function for random song picking."""
 def randomsongindex(tlist):
     songindex = randint(0, len(tlist) - 1)
     return songindex
 
+"""Select a song using a random song index."""
 def randomsong():
     tracks = import_tracks()
     song_number = randomsongindex(tracks)
     track_name = tracks[song_number]
     return track_name
 
+"""Split the lyrics of a song into couplets."""
 def splitlyrics(song):
     lines = song.read().split("\n")
     for line in lines:
@@ -27,12 +31,14 @@ def splitlyrics(song):
             del lines[lines.index(line)]
     return lines
 
+"""Check if a number is even."""
 def iseven(line_index):
     if line_index % 2 == 0:
         return True
     else:
     	return False
 
+"""Generate random lyrics from a set database of Drake's lyrics."""
 def randomline():
     s = randomsong()
     correct_name = translate(s)
